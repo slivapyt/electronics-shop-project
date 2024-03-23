@@ -54,3 +54,11 @@ def test_string_to_number():
     assert Item.string_to_number("3.7") == 3
     assert Item.string_to_number("6.1") == 6
     assert Item.string_to_number("9.9") == 9
+
+
+def test__repr__(number5):
+    assert number5.__repr__() == "Item('жопич', 50000, 2)"
+
+
+def test__str__(number5):
+    assert number5.__str__() == 'жопич'

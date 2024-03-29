@@ -16,6 +16,7 @@ class Item:
         price: Цена за единицу товара.
         quantity: Количество товара в магазине.
         """
+        super().__init__()
         self.__name = name
         self.price = price
         self.quantity = quantity
@@ -59,6 +60,12 @@ class Item:
     @staticmethod
     def string_to_number(num):
         return math.floor(float(num))
+
+    def __add__(self, other):
+        if isinstance(other, self.__class__):
+            return self.quantity + other.quantity
+
+        raise Exception
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}('{self.__name}', {self.price}, {self.quantity})"

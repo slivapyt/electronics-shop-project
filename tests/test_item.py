@@ -1,11 +1,7 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
-import pytest
+
+from tests.fixture import number5, create_temp_csv, phone_test_inp
 from src.item import Item
-
-
-@pytest.fixture
-def number5():
-    return Item("жопич", 50000, 2)
 
 
 def test_calculate_total_price(number5):
@@ -25,17 +21,6 @@ def test_name(number5):
     assert number5.name == "жопич"
     number5.name = "жопичжопичжопич"
     assert number5.name == "жопичжопич"
-
-
-@pytest.fixture
-def create_temp_csv(tmp_path):
-    csv_text = """name,price,quantity
-item1,10,1
-item2,20,2
-"""
-    csv_file = tmp_path / "test.csv"
-    csv_file.write_text(csv_text)
-    return csv_file
 
 
 def test_instantiate_from_csv(create_temp_csv):
@@ -62,3 +47,7 @@ def test__repr__(number5):
 
 def test__str__(number5):
     assert number5.__str__() == 'жопич'
+
+
+def test__add__(number5, phone_test_inp):
+    assert number5.__add__(phone_test_inp) == 7
